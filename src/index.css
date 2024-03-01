@@ -1,0 +1,6 @@
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+.table-responsive {
+  overflow-x: auto;
+}
