@@ -1,6 +1,18 @@
+body {
+  background-color: #f5f6f6;
+  font-family: "Montserrat", sans-serif;
+}
+
 .cursor-pointer:hover {
   cursor: pointer;
 }
 .table-responsive {
   overflow-x: auto;
+}
+.table {
+  margin-top: 20px;
+  font-size: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: "Montserrat", sans-serif;
 }

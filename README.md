@@ -15,7 +15,7 @@ Este es un proyecto de una aplicación web que utiliza la API de Random User par
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/proyecto_usuarios.git
+git clone https://github.com/CristhianBuiza/proyecto_usuarios
 ```
 
 2. Instala las dependencias:
@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Esto abrirá la aplicación en tu navegador predeterminado. Si no se abre automáticamente, puedes acceder a ella en [http://localhost:3000](http://localhost:3000).
+Esto abrirá la aplicación en tu navegador predeterminado. Si no se abre automáticamente, puedes acceder a ella en [http://localhost:3000](http://localhost:5173).
 
 2. Experimenta con los diferentes filtros y funcionalidades proporcionadas por la aplicación.
 

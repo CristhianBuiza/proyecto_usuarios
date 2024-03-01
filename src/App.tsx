@@ -382,7 +382,7 @@ function App() {
                                 width={50}
                                 height={50}
                                 src={item?.picture?.thumbnail}
-                                alt="Foto de perfil"
+                                alt={`Foto de perfil de ${item?.name?.first} ${item?.name?.last}`}
                                 className="img-thumbnail border-0 rounded-circle"
                               />
                             </td>
@@ -426,7 +426,7 @@ function App() {
                                 <input
                                   type="text"
                                   value={
-                                    editableUsers[index]?.location.street.name
+                                    editableUsers[index].location.street.name
                                   }
                                   onChange={(e) =>
                                     handleEditChange(
