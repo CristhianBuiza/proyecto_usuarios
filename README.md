@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Esto abrirá la aplicación en tu navegador predeterminado. Si no se abre automáticamente, puedes acceder a ella en [http://localhost:3000](http://localhost:5173).
+Esto abrirá la aplicación en tu navegador predeterminado. Si no se abre automáticamente, puedes acceder a ella en [http://localhost:5173](http://localhost:5173).
 
 2. Experimenta con los diferentes filtros y funcionalidades proporcionadas por la aplicación.
 
