@@ -78,6 +78,19 @@ function App() {
           : prev.filter((i) => i !== index) // Remover índice
     );
   };
+  /**
+   * The `handleEditChange` function updates a specific field in an array of editable users based on
+   * the provided index and field path.
+   * @param {string | number} value - The `value` parameter in the `handleEditChange` function can be
+   * either a string or a number. It represents the new value that you want to set for a specific field
+   * in the editable users data.
+   * @param {number} index - The `index` parameter represents the index of the user in the
+   * `EditableUsers` array that you want to edit.
+   * @param {string} field - The `field` parameter in the `handleEditChange` function represents the
+   * path to the specific field that needs to be updated in the `EditableUsers` object. It is a string
+   * that may contain nested properties separated by dots (e.g., "user.name.first"). This function uses
+   * the `field
+   */
   const handleEditChange = (
     value: string | number,
     index: number,
@@ -85,7 +98,6 @@ function App() {
   ) => {
     setEditableUsers((prev: EditableUsers) => {
       const updatedUsers = { ...prev };
-      // Manejo de campos anidados
       const fieldParts = field.split(".");
       const lastField = fieldParts.pop();
       let currentPart = updatedUsers[index];
@@ -103,6 +115,10 @@ function App() {
     });
   };
 
+  /**
+   * The `saveChanges` function updates the filtered users list with the edited user data, exits editing
+   * mode, and clears the editable users data.
+   */
   const saveChanges = () => {
     setFilteredUsers((currentUsers) => {
       const updatedUsers = [...currentUsers];
@@ -115,6 +131,14 @@ function App() {
     setEditableUsers({}); // Limpiar los usuarios editables
   };
 
+  /**
+   * The function `handleDeleteSelected` removes selected items from a list of users in React and clears
+   * the selected indices.
+   * @returns The `handleDeleteSelected` function returns `undefined` because there is no explicit
+   * return statement at the end of the function. The function performs the deletion of selected items
+   * from the `filteredUsers` state and clears the `selectedIndices` state, but it does not return any
+   * value explicitly.
+   */
   const handleDeleteSelected = () => {
     if (selectedIndices.length === 0) {
       toast.error("No se ha seleccionado nada para eliminar.");
@@ -125,9 +149,22 @@ function App() {
     );
     setSelectedIndices([]); // Limpia los índices seleccionados después de eliminar
   };
+  /**
+   * The function `getNestedValue` retrieves a nested value from an object based on a given path
+   * string.
+   * @param obj - `obj` is an object that contains nested values.
+   * @param path - The `path` parameter is a string that represents the path to a nested value within
+   * an object. Each level of nesting is separated by a dot (".") in the string.
+   * @returns The `getNestedValue` function is returning the nested value from the object `obj` based
+   * on the provided `path`. It splits the `path` string by "." and then uses `reduce` to traverse the
+   * nested properties of the object until it reaches the final nested value specified by the `path`.
+   */
   const getNestedValue = (obj, path) => {
     return path.split(".").reduce((acc, part) => acc && acc[part], obj);
   };
+  /* The above code snippet is using the `useMemo` hook in a TypeScript React component to create a
+ memoized sorted list of users based on certain sorting configurations. It takes `filteredUsers` and
+ `sortConfig` as dependencies. */
   const sortedUsers = useMemo(() => {
     const sortableUsers = [...filteredUsers];
     if (sortConfig.key !== null) {
@@ -146,6 +183,11 @@ function App() {
     }
     return sortableUsers;
   }, [filteredUsers, sortConfig]);
+  /**
+   * The `requestSort` function in TypeScript React toggles the sorting direction based on the provided
+   * key.
+   * @param {SortKey} key - The `key` parameter in the `requestSort` function is of type `SortKey`.
+   */
   const requestSort = (key: SortKey) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -153,6 +195,10 @@ function App() {
     }
     setSortConfig({ key, direction });
   };
+  /**
+   * The functions handleNextPage and handlePreviousPage update the current page and clear selected
+   * indices in a TypeScript React application.
+   */
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
     setSelectedIndices([]); // Limpia los índices seleccionados
@@ -162,6 +208,9 @@ function App() {
     setSelectedIndices([]); // Limpia los índices seleccionados
   };
 
+  /* The above code is using the `useQuery` hook from a library like React Query in a TypeScript React
+  application. It is fetching a list of users based on the `currentPage` and `selectedNationality`
+  parameters. */
   const {
     isLoading,
     isError,
@@ -170,7 +219,12 @@ function App() {
     queryKey: ["users", currentPage, selectedNationality],
     queryFn: () => fetchUser(currentPage, selectedNationality),
   });
-  console.log("users", users);
+  /* The above code is a `useEffect` hook in a TypeScript React component. It is watching for changes in
+ the `users` array and the `selectedGender` state. When `selectedGender` is updated, it filters the
+ `users` array based on the selected gender and updates the `filteredUsers` state with the filtered
+ results. If no gender is selected (`selectedGender` is falsy), it sets the `filteredUsers` state to
+ the original `users` array. This code snippet is essentially filtering users based on the selected
+ gender in a React component. */
   useEffect(() => {
     if (selectedGender) {
       setFilteredUsers(users.filter((user) => user.gender === selectedGender));
@@ -178,6 +232,8 @@ function App() {
       setFilteredUsers(users);
     }
   }, [users, selectedGender]);
+  /* The above code is using the `useEffect` hook in a React component to show different toast messages
+  based on the state of `isLoading`, `isError`, and the `users` array. */
   useEffect(() => {
     if (isLoading) {
       toast.loading("Cargando usuarios...", { duration: 3000 }); // Duración más larga
